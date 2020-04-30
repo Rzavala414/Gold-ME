@@ -77,7 +77,12 @@ won the most medals, along with the number of medals aliased to 'count'.
 */
 
 const bestYear = country => {
-  return;
+  return `SELECT year, COUNT(*) AS count
+            FROM GoldMedal
+            WHERE country = ${country}
+            GROUP BY year
+            ORDER By COUNT(*) DESC
+            LIMIT 1;`;
 };
 
 /*
@@ -86,7 +91,12 @@ won the most medals, along with the number of medals aliased to 'count'.
 */
 
 const bestDiscipline = country => {
-  return;
+  return `SELECT discipline, COUNT(*) AS count
+            FROM GoldMedal
+            WHERE country = ${country}
+            GROUP BY discipline
+            ORDER BY COUNT(*) DESC
+            LIMIT 1;`;
 };
 
 /*
@@ -95,7 +105,12 @@ won the most medals, along with the number of medals aliased to 'count'.
 */
 
 const bestSport = country => {
-  return;
+  return `SELECT sport, COUNT(*) AS count
+          FROM GoldMedal
+            WHERE country = ${country}
+            GROUP BY sport
+            ORDER BY COUNT(*)
+            LIMIT 1;`;
 };
 
 /*
