@@ -119,7 +119,12 @@ won the most medals, along with the number of medals aliased to 'count'.
 */
 
 const bestEvent = country => {
-  return;
+  return `SELECT event, COUNT(*)
+          FROM GoldMedal
+           WHERE country = ${country}
+           GROUP BY event
+           ORDER BY COUNT(*) DESC
+           LIMIT 1; `;
 };
 
 /*
@@ -127,15 +132,21 @@ Returns a SQL query string that will find the number of male medalists.
 */
 
 const numberMenMedalists = country => {
-  return;
-};
+  return `SELECT COUNT(DISTINCT name)
+          FROM GoldMedal
+            WHERE country = ${country}
+              AND gender = male;`;
+}
 
 /*
 Returns a SQL query string that will find the number of female medalists.
 */
 
 const numberWomenMedalists = country => {
-  return;
+  return `SELECT COUNT(DISTINCT name)
+  FROM GoldMedal
+    WHERE country = ${country}
+      AND gender = woman;`;
 };
 
 /*
