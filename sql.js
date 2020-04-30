@@ -154,7 +154,12 @@ Returns a SQL query string that will find the athlete with the most medals.
 */
 
 const mostMedaledAthlete = country => {
-  return;
+  return `SELECT name
+          FROM GoldMedal
+            WHERE country = ${country}
+            GROUP BY name
+            ORDER BY COUNT(*) DESC
+            LIMIT 1;`;
 };
 
 /*
