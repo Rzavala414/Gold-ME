@@ -7,10 +7,10 @@ Returns a SQL query string that will create the Country table with four columns:
 
 const createCountryTable = () => {
   return `CREATE TABLE Country(
-            name TEXT NOT NULL
-            code TEXT NOT NULL
-            gdp INTEGER
-            population integer);`;
+            name TEXT NOT NULL,
+            code TEXT NOT NULL,
+            gdp INTEGER,
+            population INTEGER);`;
 };
 
 /*
@@ -19,15 +19,15 @@ Returns a SQL query string that will create the GoldMedal table with ten columns
 
 const createGoldMedalTable = () => {
   return `CREATE TABLE GoldMedal(
-            id  INTEGER PRIMARY KEY
-            year INTEGER NOT NULL
-            city TEXT NOT NULL
-            season TEXT NOT NULL
-            name TEXT NOT NULL
-            country TEXT NOT NULL
-            gender TEXT NOT NULL
-            sport TEXT NOT NULL
-            discipline TEXT NOT NULL
+            id  INTEGER PRIMARY KEY,
+            year INTEGER NOT NULL,
+            city TEXT NOT NULL,
+            season TEXT NOT NULL,
+            name TEXT NOT NULL,
+            country TEXT NOT NULL,
+            gender TEXT NOT NULL,
+            sport TEXT NOT NULL,
+            discipline TEXT NOT NULL,
             event TEXT NOT NULL);`;
 };
 
@@ -36,9 +36,9 @@ Returns a SQL query string that will find the number of gold medals for the give
 */
 
 const goldMedalNumber = country => {
-    return `SELECT COUNT(*) AS Total
+    return `SELECT COUNT(*) AS count
               FROM GoldMedal
-              WHERE country = ${country};`;
+              WHERE country = '${country}';`
 };
 
 /*
@@ -68,7 +68,7 @@ const mostWinterWins = country => {
     AND season = winter
     GROUP BY year
     ORDER BY COUNT(*) DESC
-    LIMIT 1; `;
+    LIMIT 1;`;
 };
 
 /*
@@ -168,7 +168,10 @@ optionally ordered by the given field in the specified direction.
 */
 
 const orderedMedals = (country, field, sortAscending) => {
-  return;
+  return `SELECT COUNT(*)
+          FROM GoldMedal
+          WHERE country = ${country}
+           `;
 };
 
 /*
