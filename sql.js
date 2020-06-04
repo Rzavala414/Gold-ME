@@ -121,28 +121,28 @@ const bestEvent = country => {
            LIMIT 1; `;
 };
 
+const numberGenderMedalists = (gender, country) => {
+  if (['Men', 'Women'].includes(gender)) {
+    return `SELECT COUNT(DISTINCT name) FROM GoldMedal WHERE country = '${country}' AND gender = '${gender}';`;
+  }
+  return null;
+};
+
 /*
 Returns a SQL query string that will find the number of male medalists.
 */
 
 const numberMenMedalists = country => {
-  return `SELECT COUNT(DISTINCT name)
-          FROM GoldMedal
-            WHERE country = '${country}'
-              AND gender = male;`;
-}
+  return numberGenderMedalists('Men', country);
+};
 
 /*
 Returns a SQL query string that will find the number of female medalists.
 */
 
 const numberWomenMedalists = country => {
-  return `SELECT COUNT(DISTINCT name)
-  FROM GoldMedal
-    WHERE country = '${country}'
-      AND gender = woman;`;
+  return numberGenderMedalists('Women', country);
 };
-
 /*
 Returns a SQL query string that will find the athlete with the most medals.
 */
@@ -162,10 +162,7 @@ optionally ordered by the given field in the specified direction.
 */
 
 const orderedMedals = (country, field, sortAscending) => {
-  return `SELECT COUNT(*)
-          FROM GoldMedal
-          WHERE country = '${country}'
-           `;
+  return;
 };
 
 /*
@@ -175,9 +172,9 @@ as well as the percentage of this country's wins the sport represents,
 aliased as 'percent'. Optionally ordered by the given field in the specified direction.
 */
 
-const orderedSports = (country, field, sortAscending) => {
-  return;
-};
+// const orderedSports = (country, field, sortAscending) => {
+//   return;
+// };
 
 module.exports = {
   createCountryTable,
@@ -191,7 +188,7 @@ module.exports = {
   bestEvent,
   numberMenMedalists,
   numberWomenMedalists,
-  mostMedaledAthlete,
-  orderedMedals,
-  orderedSports
+  mostMedaledAthlete
+  // orderedMedals,
+  // orderedSports
 };
