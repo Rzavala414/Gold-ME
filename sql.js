@@ -201,10 +201,7 @@ module.exports = {
   bestEvent,
   numberMenMedalists,
   numberWomenMedalists,
-  mostMedaledAthlete,const name = (params) => {
-    
-  }
-  
+  mostMedaledAthlete,
   orderedMedals,
   orderedSports
 };
